@@ -116,7 +116,7 @@ module Expression_parse_tree = struct
   let parens p = char '(' *> (p <|> return []) <* char ')'
   (* Doesn't use parameters above, because we don't want that parser to continue
      parsing many parameters separated by whitespace. *)
-  let parameters = many1 parameter >>= fun ps -> return (make_parameters ps)
+  let parameters = parameter >>= fun ps -> return (make_parameters [ps])
   let not_ term = string "NOT" *> whitespace *> term >>= fun term -> return [Expr (Not, term)]
   let and_ = whitespace *> string "AND" *> whitespace *>  return (fun left right -> [Expr (And, left@right)])
   let or_ = whitespace *> string "OR" *> whitespace *> return (fun left right -> [Expr (Or, left@right)])
