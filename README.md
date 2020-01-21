@@ -2,7 +2,7 @@
 
 ## Example
 
-[`NOT repo:foo AND (file:bar (baz OR qux))`](NOT repo:foo AND (file:bar (baz OR qux)))
+[`NOT repo:foo AND (file:bar (baz OR qux))`](https://rvantonder.github.io/q/#NOT%20repo:foo%20AND%20(file:bar%20(baz%20OR%20qux)))
 
 ## Very long query?
 
