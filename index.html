@@ -7,17 +7,20 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
       <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/default.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
       <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
       <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <!--<pre><code class="json" id="enter"></code></pre>-->
     <pre><code class="json" id="live"></code></pre>
+    <br>
+    <input id="query" name="query" onKeyUp="update(this.value, true);" onChange="update(this.value, false);" type="text" size="100"/>
 
     <script>
         function update(value, b) {
             // console.log('sent ' + value)
-            location.hash = value;
+            location.hash = encodeURI(value);
             var str = parse(value);
             // console.log('got ' + value)
             if (b) {
@@ -33,12 +36,11 @@
 
     <script>
         $(window).on("load", function(){
-          var value = window.location.hash.substr(1);
-          update(value);
+          var value = decodeURI(window.location.hash.substr(1));
+          console.log('start: ' + value);
+          update(value, true);
+          document.getElementById("query").value = value;
         });
     </script>
-
-    <br>
-    <input name="query" onKeyUp="update(this.value, true);" onChange="update(this.value, false);" type="text" size="100"/>
 
 </html>
