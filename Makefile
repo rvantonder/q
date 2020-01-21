@@ -1,5 +1,5 @@
 all:
-	dune build ./src/main.bc.js && node _build/default/src/main.bc.js --profile release
+	dune build ./src/main.bc.js --profile release
 
 minimize:
 	./node_modules/uglify-js/bin/uglifyjs _build/default/src/main.bc.js > parser.min.js
