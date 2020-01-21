@@ -2,7 +2,7 @@
 
 ## Example
 
-[`(groups ((do) NOT (nest except)) with:operators like AND or) OR or`](https://rvantonder.github.io/q/#(groups%20((do)%20NOT%20(nest%20except))%20with:operators%20like%20AND%20or)%20OR%20or)
+[`NOT repo:foo AND (file:bar (baz OR qux))`](NOT repo:foo AND (file:bar (baz OR qux)))
 
 ## Very long query?
 
