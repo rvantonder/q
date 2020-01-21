@@ -1,0 +1,44 @@
+<html>
+    <head>
+      <script type="text/javascript" src="_build/default/src/main.bc.js"></script>
+      <!--<script type="text/javascript" src="parser.min.js"></script>-->
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/default.min.css">
+      <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <!--<pre><code class="json" id="enter"></code></pre>-->
+    <pre><code class="json" id="live"></code></pre>
+
+    <script>
+        function update(value, b) {
+            // console.log('sent ' + value)
+            location.hash = value;
+            var str = parse(value);
+            // console.log('got ' + value)
+            if (b) {
+                document.getElementById("live").innerHTML = str;
+            } else {
+                // document.getElementById("enter").innerHTML = str;
+            }
+            document.querySelectorAll('pre code').forEach((block) => {
+              hljs.highlightBlock(block);
+            });
+        }
+    </script>
+
+    <script>
+        $(window).on("load", function(){
+          var value = window.location.hash.substr(1);
+          update(value);
+        });
+    </script>
+
+    <br>
+    <input name="query" onKeyUp="update(this.value, true);" onChange="update(this.value, false);" type="text" size="42"/>
+
+</html>

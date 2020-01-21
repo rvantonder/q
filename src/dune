@@ -1,0 +1,14 @@
+(executables
+ (names main)
+ (preprocess
+  (pps ppx_deriving_yojson))
+ (libraries
+  angstrom
+  yojson
+  js_of_ocaml))
+
+(rule
+ (targets main.js)
+  (action
+    (run %{bin:js_of_ocaml} --noruntime %{lib:js_of_ocaml-compiler:runtime.js}
+         --source-map %{dep:main.bc} -o %{targets} --pretty)))

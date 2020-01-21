@@ -1,0 +1,17 @@
+opam-version: "1.2"
+version: ""
+maintainer: ""
+authors: [""]
+homepage: ""
+bug-reports: ""
+dev-repo: ""
+license: "MIT"
+build: [["jbuilder" "build" "-p" name "-j" jobs "@install"]]
+build-test: [["jbuilder" "runtest" "-p" name "-j" jobs]]
+depends: [
+  "yojson"
+  "ppx_deriving"
+  "ppx_deriving_yojson"
+  "angstrom"
+  "js_of_ocaml"
+]
