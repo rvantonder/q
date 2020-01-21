@@ -16,12 +16,39 @@
     <pre><code class="json" id="live"></code></pre>
     <br>
     <input id="query" name="query" onKeyUp="update(this.value, true);" onChange="update(this.value, false);" type="text" size="100"/>
+    <br>
+    <br>
+    <pre><code class="markdown">
+    *Metasyntax. These characters have special meaning. Interpret literally by escaping them with '\'*
+
+      : " ' \ ( ) &lt;space&gt;
+
+    *Operator keywords*
+
+      AND OR NOT
+
+      &gt; AND or OR keywords must be preceded by and followed by whitespace.
+      &gt; NOT keyword must be preceded by an opening group `(` or whitespace, and followed by whitespace
+
+    *Valid parameter syntax examples*
+
+      keyword:value
+      keyword:"quoted value with space"
+      keyword:'quoted value with space'
+      -keyword:'negated parameter'
+
+    *Group terms with (...)*
+    </code></pre>
 
     <script>
         function update(value, b) {
             // console.log('sent ' + value)
             location.hash = encodeURI(value);
-            var str = parse(value);
+            try {
+              var str = parse(value);
+            } catch (err) {
+              var str = "Long query is long. You will find no tail call optimization here. See README for help (TL;DR run locally with `node --stack-size=9999`)";
+	    }
             // console.log('got ' + value)
             if (b) {
                 document.getElementById("live").innerHTML = str;
